@@ -1,48 +1,99 @@
 // This function gets user input and creates a new pizza order object
 // You only need to add code to this function
 function getPizzaOrder() {
-  var extraCheeseUpcharge = 1.5
-  var thickCrustUpcharge = 2
-  var deliveryFee = 3.5
-  var toppingsFee = 1.5
-  var basePrice = 10
+    var extraCheeseUpcharge = 1.5
+    var thickCrustUpcharge = 2
+    var deliveryFee = 3.5
+    var toppingsFee = 1.5
+    var basePrice = 10
 
-  alert("Hi, Thanks for ordering with Web to Pizza!")
-  var pizza = {
-    // set the 'cost' property to the basePrice
+    alert("Hi, Thanks for ordering with Web to Pizza!")
+    var pizza = {
+        // set the 'cost' property to the basePrice
+        // YOUR CODE HERE
+
+        cost: basePrice
+
+    }
+
+
+    var crust = prompt(
+        `Please enter the type of crust (${formatPrice(thickCrustUpcharge)} upcharge for Thick crust)`
+    )
+    // set the pizza object's 'crust' property to the user's response
+    // HINT: prompt() returns a string
+    // HINT: You may wish to use .toLowerCase() and .trim()
+    // if the user specified 'thick' crust, add thickCrustUpcharge
+    // to pizza.cost
     // YOUR CODE HERE
-  }
+    pizza.crust = crust
+    if (crust === 'thick') {
+        pizza.cost += thickCrustUpcharge
+    }
 
-  var crust = prompt(
-    `Please enter the type of crust (${formatPrice(thickCrustUpcharge)} upcharge for Thick crust)`
-  )
-  // set the pizza object's 'crust' property to the user's response
-  // HINT: prompt() returns a string
-  // HINT: You may wish to use .toLowerCase() and .trim()
-  // if the user specified 'thick' crust, add thickCrustUpcharge
-  // to pizza.cost
-  // YOUR CODE HERE
 
-  var toppings = prompt("Please enter additional toppings (comma separated)")
-  // HINT: prompt() will return an empty string "" if the user presses 'OK' without entering a value
-  // if the user enters toppings, use .split(",") to separate toppings into an array
-  // if no toppings are given, make sure pizza.toppings is set to []
-  // if the user has added toppings, add toppingsFee multiplied by
-  // the number of toppings added to pizza.cost
-  // YOUR CODE HERE
 
-  var extraCheese = confirm("Would you like extra cheese?")
+
+
+
+    var toppings = prompt("Please enter additional toppings (comma separated)")
+    // HINT: prompt() will return an empty string "" if the user presses 'OK' without entering a value
+    // / if the user enters toppings, use .split(",") to separate toppings into an array
+   
+    // if the user has added toppings, add toppingsFee multiplied by
+    // the number of toppings added to pizza.cost
+
+     
+    // YOUR CODE HERE
+
+
+ 
+  
+    if(toppings) {
+        // split the string into an array
+        // add the price of the added toppings to the cost of the pizza   
+        pizza.toppings = toppings.split(",")
+        pizza.cost += toppingsFee * pizza.toppings.length
+    }
+    else {
+        pizza.toppings = []
+    }
+
+
+
+
+  var extraCheese = confirm("Would you like extra cheese it will be a 1.50 upcharge?")
   // HINT: confirm() returns a boolean
   // if the user specifies extra cheese, set pizza.extraCheese to true or false
   // if the user specifies extra cheese, add extraCheeseUpcharge to pizza.cost
   // YOUR CODE HERE
+    if (extraCheese === true || false) {
+        pizza.extraCheese = extraCheese
+        pizza.cost += extraCheeseUpcharge
+
+
+
+
+      
+}
+    
 
   var isDelivery = confirm("Is your order for Delivery?")
   // HINT: confirm() returns a boolean
   // if order is for delivery, set pizza.saleType to "delivery"
   // if order is NOT for delivery, set pizza.saleType to "take-out"
-  // if order if for delivery, add deliveryFee to pizza.cost
+
+    // if order if for delivery, add deliveryFee to pizza.cost
   // YOUR CODE HERE
+
+    if (isDelivery === true) {
+        pizza.saleType = "delivery"
+        pizza.cost += deliveryFee
+    }
+    else  {
+        pizza.saleType = "take-out"
+    }
+
 
   return pizza
 }
